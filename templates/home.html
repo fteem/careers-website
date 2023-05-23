@@ -1,9 +1,62 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-<h1>Hello world!</h1>
+<div class='container-lg'>
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/static/logo.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold text-body-emphasis">Raspberry Careers</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+      Raspberry builds financial infrastructure that ambitious companies use to launch their boldest products. Our customers range from hours-old startups to complex global businesses. Collectively, they are growing the GDP of the internet. You can help.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href='#open-roles' type="button" class="btn btn-primary btn-lg px-4 gap-3">See Open Roles</a>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <h2 class="text-center mt-4">About Raspberry</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit, commodo dictum
+      sollicitudin porta metus. Metus ligula posuere odio fusce at lobortis, est
+      viverra dictum tortor arcu. Sodales commodo vestibulum turpis penatibus
+      magna dis lacinia neque pellentesque, conubia gravida ornare viverra
+      egestas auctor justo et mollis class, cursus inceptos cum curabitur erat
+      iaculis sagittis ullamcorper.
+    </p>
+
+    <p>
+      Purus lobortis ac porta ultrices nullam himenaeos curabitur vitae cursus
+      elementum, donec quis nulla integer iaculis aliquam mollis et torquent,
+      eros pretium cubilia sociis lacus ut at a sed. A semper mi molestie libero
+      hendrerit natoque dui nisl, erat gravida ridiculus urna dignissim vitae
+      aptent class tortor, torquent odio habitasse aenean nibh ante posuere.
+      Himenaeos arcu non ligula nisl venenatis egestas blandit primis donec,
+      gravida tristique urna dui vulputate lectus posuere commodo fringilla, nisi
+      euismod platea porttitor conubia augue taciti orci.
+    </p>
+    <h2 class="text-center mt-4" id='open-roles'>Open Roles</h2>
+    <div class='col-12 mt-4'>
+    {% for job in jobs %}
+      <div class="row border-bottom mb-4">
+        <div class='col-9'>
+          <h3>{{job['title']}}</h3>
+          <p class="lh-sm">
+            <b>Salary:</b> {{job['salary']}}
+            <br/>
+            <b>Location:</b> {{job['location']}}
+            <br/>
+            <b>Timezone:</b> between {{job['west-timezone']}} and {{job['east-timezone']}}
+          </p>
+        </div>
+        <div class='col-3'>
+          <a href='#' class='btn btn-primary float-end'>Apply now</a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+  </div>
+</div>
 {% endblock %}
