@@ -51,7 +51,7 @@
           </p>
         </div>
         <div class='col-3'>
-          <a href='#' class='btn btn-primary float-end'>Apply now</a>
+          <a href={{ url_for('listing', slug=job['slug']) }} class='btn btn-primary float-end'>Apply now</a>
         </div>
       </div>
     {% endfor %}

@@ -7,6 +7,7 @@ app = Flask(__name__)
 JOBS = [
     {
         'id': 1,
+        'slug': 'full-stack-engineer',
         'title': 'Full Stack Engineer',
         'west-timezone': 'PST',
         'east-timezone': 'CET',
@@ -15,6 +16,7 @@ JOBS = [
     },
     {
         'id': 2,
+        'slug': 'backend-engineer',
         'title': 'Backend Engineer',
         'west-timezone': 'PST',
         'east-timezone': 'CET',
@@ -23,6 +25,7 @@ JOBS = [
     },
     {
         'id': 3,
+        'slug': 'ux-designer',
         'title': 'UX Designer',
         'west-timezone': 'PST',
         'east-timezone': 'CET',
@@ -31,6 +34,7 @@ JOBS = [
     },
     {
         'id': 4,
+        'slug': 'ios-engineer',
         'title': 'iOS Engineer',
         'west-timezone': 'PST',
         'east-timezone': 'CET',
@@ -43,6 +47,13 @@ JOBS = [
 @app.route('/home')
 def home():
     return render_template('home.html', jobs=JOBS)
+
+@app.route('/listing/<slug>')
+def listing(slug):
+    for job in JOBS:
+        if job['slug'] == slug:
+            return render_template('listing.html', job=job)
+    abort(404)
 
 @app.errorhandler(404)
 def not_found(e):
