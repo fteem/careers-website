@@ -1,10 +1,5 @@
-from flask import Flask, render_template, flash, abort
-from dotenv import load_dotenv
-from db.connection import db_session
-
-load_dotenv()
-app = Flask(__name__)
-
+from flask import render_template, flash, abort
+from app import app
 JOBS = [
     {
         'id': 1,
@@ -60,6 +55,6 @@ def listing(slug):
 def not_found(e):
   return render_template("404.html")
 
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db_session.remove()
+# @app.teardown_appcontext
+# def shutdown_session(exception=None):
+    #foo
