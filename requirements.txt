@@ -3,3 +3,5 @@ Gunicorn
 python-dotenv
 pymysql
 Flask-SQLAlchemy
+Babel
+sqlalchemy-utils
