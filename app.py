@@ -1,4 +1,7 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, abort
+from dotenv import load_dotenv
+
+load_dotenv()
 app = Flask(__name__)
 
 JOBS = [
@@ -40,3 +43,7 @@ JOBS = [
 @app.route('/home')
 def home():
     return render_template('home.html', jobs=JOBS)
+
+@app.errorhandler(404)
+def not_found(e):
+  return render_template("404.html")
