@@ -1,3 +1,5 @@
 Flask
 Gunicorn
 python-dotenv
+pymysql
+Flask-SQLAlchemy
