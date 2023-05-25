@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, abort
 from dotenv import load_dotenv
+from db.connection import db_session
 
 load_dotenv()
 app = Flask(__name__)
@@ -58,3 +59,7 @@ def listing(slug):
 @app.errorhandler(404)
 def not_found(e):
   return render_template("404.html")
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
