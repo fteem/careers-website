@@ -37,12 +37,15 @@
     </div>
   </div>
   <div class='row mt-4'>
-    <div class='col-3'>
-      <a class='btn btn-primary' href='#'>Apply Now</a>
+    <div class='d-flex gap-2'>
+      <a class='btn btn-primary mr-2' role="button" href='#'>Apply Now</a>
+      <a class="ml-2 btn btn-outline-secondary" role="button" id="liveToastBtn" data-slug={{job.slug}}>
+        Summarize this job
+        <span class="spinner-border spinner-border-sm" role="status" id='loadingSpinner' hidden='false' aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 
-  <button type="button" class="btn btn-secondary" id="liveToastBtn" data-slug={{job.slug}}>Summarize this job</button>
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
