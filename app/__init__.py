@@ -22,5 +22,5 @@ migrate = Migrate(app, db)
 
 # Models must be imported after the database and migration
 # are defined as they reference the database
-from app import models
+from app.models import Listing
 from app import routes
