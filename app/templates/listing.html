@@ -2,6 +2,57 @@
 
 {% block content %}
 <div class='container-lg'>
-  {{job}}
+  <div class='row mt-4'>
+    <div class='col-12'>
+      <h1>{{job.title}}</h1>
+      <p>
+        <b>Published:</b> {{job.created_at.strftime("%B %d, %Y")}}
+        <b>Salary:</b> {{job.salary}}{{job.currency}}
+        <b>Location:</b> {{job.location}}
+      </p>
+    </div>
+  </div>
+  <div class='row mt-4'>
+    <div class='col-6'>
+      <h2>About the team</h2>
+      <p>{{job.team_description}}</p>
+    </div>
+  </div>
+  <div class='row mt-4'>
+    <div class='col-9'>
+      <h2>About the role</h2>
+      <p>{{job.role_description}}</p>
+    </div>
+  </div>
+  <div class='row mt-4'>
+    <div class='col-9'>
+      <h2>Responsibilities</h2>
+      <p>{{job.responsibilities}}</p>
+    </div>
+  </div>
+  <div class='row mt-4'>
+    <div class='col-9'>
+      <h2>Benefits & compensation</h2>
+      <p>{{job.benefits_compensation}}</p>
+    </div>
+  </div>
+  <div class='row mt-4'>
+    <div class='col-3'>
+      <a class='btn btn-primary' href='#'>Apply Now</a>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-secondary" id="liveToastBtn" data-slug={{job.slug}}>Summarize this job</button>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">ChatGPT</strong>
+        <small>now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id='toast-body'></div>
+    </div>
+  </div>
 </div>
 {% endblock %}

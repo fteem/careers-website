@@ -16,4 +16,4 @@ db_config = dict(
 
 class Config(object):
     SQLALCHEMY_DATABASE_URI = URL.create(**db_config)
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True

@@ -1,60 +1,46 @@
 from flask import render_template, flash, abort
-from app import app
-JOBS = [
-    {
-        'id': 1,
-        'slug': 'full-stack-engineer',
-        'title': 'Full Stack Engineer',
-        'west-timezone': 'PST',
-        'east-timezone': 'CET',
-        'salary': '€100,000',
-        'location': 'Remote'
-    },
-    {
-        'id': 2,
-        'slug': 'backend-engineer',
-        'title': 'Backend Engineer',
-        'west-timezone': 'PST',
-        'east-timezone': 'CET',
-        'salary': '€100,000',
-        'location': 'Remote'
-    },
-    {
-        'id': 3,
-        'slug': 'ux-designer',
-        'title': 'UX Designer',
-        'west-timezone': 'PST',
-        'east-timezone': 'CET',
-        'salary': '€120,000',
-        'location': 'Remote'
-    },
-    {
-        'id': 4,
-        'slug': 'ios-engineer',
-        'title': 'iOS Engineer',
-        'west-timezone': 'PST',
-        'east-timezone': 'CET',
-        'salary': '€100,000',
-        'location': 'Remote'
-    },
-]
+from app import app, db
+from app.models import Listing
+from app.openai_client import get_summary
+
+SUMMARIES = dict()
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', jobs=JOBS)
+    listings = Listing.query.all()
+    return render_template('home.html', jobs=listings)
 
 @app.route('/listing/<slug>')
 def listing(slug):
-    for job in JOBS:
-        if job['slug'] == slug:
-            return render_template('listing.html', job=job)
+    listing = Listing.query.filter_by(slug=slug).first()
+    if listing is not None:
+        return render_template('listing.html', job=listing)
+    abort(404)
+
+@app.route('/summarize/<slug>')
+def summary(slug):
+    listing = Listing.query.filter_by(slug=slug).first()
+    if listing is not None:
+        if listing.title not in SUMMARIES:
+            summary = get_summary(
+                listing.title,
+                listing.team_description,
+                listing.role_description,
+                listing.benefits_compensation,
+                listing.responsibilities,
+                f"{listing.salary}{listing.currency}",
+            )
+            SUMMARIES[listing.title] = summary
+            return summary
+        else:
+            return SUMMARIES[listing.title]
     abort(404)
 
 @app.errorhandler(404)
 def not_found(e):
   return render_template("404.html")
 
-# @app.teardown_appcontext
-# def shutdown_session(exception=None):
-    #foo
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()

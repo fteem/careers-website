@@ -5,3 +5,6 @@ pymysql
 Flask-SQLAlchemy
 Babel
 sqlalchemy-utils
+Faker
+python-slugify
+openai
