@@ -8,8 +8,14 @@ SUMMARIES = dict()
 @app.route('/')
 @app.route('/home')
 def home():
-    listings = Listing.query.all()
+    listings = Listing.query.limit(5).all()
     return render_template('home.html', jobs=listings)
+
+@app.route('/listings')
+@app.route('/jobs')
+def all_listings():
+    listings = Listing.query.all()
+    return render_template('listings.html', listings=listings)
 
 @app.route('/listing/<slug>')
 def listing(slug):

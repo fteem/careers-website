@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='container-lg'>
+  <div class='row'>
+    <h2 class="text-center mt-4" id='open-roles'>All open roles</h2>
+    <div class='col-12 mt-4'>
+    {% for listing in listings %}
+      <div class="row border-bottom mb-4">
+        <div class='col-9'>
+          <h3>{{listing['title']}}</h3>
+          <p class="lh-sm">
+            <b>Salary:</b> {{listing['salary']}}
+            <br/>
+            <b>Location:</b> {{listing['location']}}
+            <br/>
+            <b>Timezone:</b> between {{listing['west-timezone']}} and {{listing['east-timezone']}}
+          </p>
+        </div>
+        <div class='col-3'>
+          <a href={{ url_for('listing', slug=listing['slug']) }} class='btn btn-outline-primary float-end'>Apply now</a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+    <div class='row justify-content-center'>
+      <div class='col-2 align-self-center'>
+        <a href={{ url_for('all_listings') }} class='btn btn-primary'>See all open roles</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
