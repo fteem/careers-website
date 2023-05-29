@@ -3,6 +3,7 @@ Gunicorn
 python-dotenv
 pymysql
 Flask-SQLAlchemy
+flask-migrate
 Babel
 sqlalchemy-utils
 Faker
