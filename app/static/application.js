@@ -12,6 +12,11 @@ if (toastTrigger) {
       .then((response) => response.text())
       .then((data) => {
         toastBody.innerHTML = data
+      })
+      .catch(error => {
+        toastBody.innerHTML = "Error occurred, please try again."
+      })
+      .finally(() => {
         toastBootstrap.show()
         loadingSpinner.setAttribute("hidden", "true");
       })
