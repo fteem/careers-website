@@ -60,10 +60,14 @@ This is what I got back:
 > promote financial literacy and inclusivity, driving change within and beyond
 > the fintech industry.
 
-> Dall-E Prompt: "Logo of a modern, innovative fintech company named NexaFunds, incorporating elements of finance, technology, and future. Use a color scheme of blue and silver to represent trust, reliability, and forward-thinking."
+> Dall-E Prompt: "Logo of a modern, innovative fintech company named NexaFunds,
+> incorporating elements of finance, technology, and future. Use a color scheme
+> of blue and silver to represent trust, reliability, and forward-thinking."
 
 ## What is the stack?
 
-Python, Flask, SQLAlchemy, and a bunch of other Python libraries. See `requirements.txt` for more details.
+Python, Flask, SQLAlchemy, and a bunch of other Python libraries. See
+`requirements.txt` for more details.
 
-The databse is powered by PlanetScale. It's deployed on Render.
+The databse is powered by PlanetScale. It's deployed on Render. It also uses
+OpenAI's API to get summaries of the job ads placed on the website.
